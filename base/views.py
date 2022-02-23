@@ -1,7 +1,4 @@
-from multiprocessing import context
-from urllib import request
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Room
 from .forms import RoomForm
 
