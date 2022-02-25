@@ -11,6 +11,10 @@ from .forms import RoomForm
 # Create your views here.
 
 def loginPage(request):
+  # to prevent user re-login
+  if request.user.is_authenticated:
+    return redirect('home')
+
   if request.method == 'POST':
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -82,7 +86,7 @@ def deleteRoom(request, pk):
 
   if request.user != room.host:
     return HttpResponse('Your are not allowed here!!')
-    
+
   if request.method == 'POST':
     room.delete()
     return redirect('home')
